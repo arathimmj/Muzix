@@ -37,7 +37,8 @@ public class TrackController {
             Track trackOne = trackService.saveTrack(track);
             responseEntity = new ResponseEntity<Track>(track, HttpStatus.CREATED);
         } catch (TrackAlreadyExistsException trackAlreadyExistsException) {
-            throw trackAlreadyExistsException;
+            responseEntity = new ResponseEntity(trackAlreadyExistsException.getMessage(), HttpStatus.CONFLICT);
+//            throw trackAlreadyExistsException;
         }
 
         return responseEntity;

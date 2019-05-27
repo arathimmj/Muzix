@@ -24,13 +24,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
-public class UserControllerTest {
+public class TrackControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -41,6 +42,7 @@ public class UserControllerTest {
     private TrackController trackController;
 
     private List<Track> list =null;
+
 
     @Before
     public void setUp(){
@@ -80,6 +82,28 @@ public class UserControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/track")
         .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+
+    }
+
+    @Test
+    public void getTrackById() throws Exception {
+
+//        when(trackService.getTracksById(any())).thenReturn(Optional.of(track));
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trackById")
+                .contentType(MediaType.APPLICATION_JSON).param("id", String.valueOf(track.getTrackId())))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+
+    }
+
+    @Test
+    public void getTrackByName() throws Exception {
+
+        when(trackService.getTracksByName(any())).thenReturn(list);
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trackByName")
+        .contentType(MediaType.APPLICATION_JSON).param("name", track.getTrackName()))
+        .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
 
     }

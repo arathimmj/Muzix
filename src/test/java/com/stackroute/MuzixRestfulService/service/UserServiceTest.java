@@ -68,13 +68,10 @@ public class UserServiceTest {
 doThrow(new TrackAlreadyExistsException()).when(trackRepository).findById(eq(101));
        trackService.saveTrack(track);
 
-
-
     }
 
     @Test
     public void getAllUser(){
-
         trackRepository.save(track);
         //stubbing the mock to return specific data
         when(trackRepository.findAll()).thenReturn(list);
@@ -82,8 +79,23 @@ doThrow(new TrackAlreadyExistsException()).when(trackRepository).findById(eq(101
         Assert.assertEquals(list,userlist);
     }
 
+    @Test
+    public void getTrackById(){
+        trackRepository.save(track);
+        when(trackRepository.findById(any())).thenReturn(Optional.of(track));
+        Optional<Track> tracks = trackService.getTracksById(track.getTrackId());
 
+        Assert.assertEquals(Optional.of(track),tracks);
+    }
 
+    @Test
+    public void getTracksByName(){
+        trackRepository.save(track);
+        when(trackRepository.findTrackByName(any())).thenReturn(list);
+        List<Track> tracks = trackService.getTracksByName(track.getTrackName());
 
+        Assert.assertEquals(list,tracks);
+
+    }
 
 }
