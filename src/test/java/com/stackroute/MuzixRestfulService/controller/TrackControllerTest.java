@@ -97,7 +97,7 @@ public class TrackControllerTest {
 
     }
 
-    @Test
+    /*@Test
     public void getTrackByName() throws Exception {
 
         when(trackService.getTracksByName(any())).thenReturn(list);
@@ -106,7 +106,7 @@ public class TrackControllerTest {
         .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
 
-    }
+    }*/
 
 
     private static String asJsonString(final Object obj)

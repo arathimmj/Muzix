@@ -58,12 +58,12 @@ public class TrackController {
 
     }
 
-    @GetMapping("trackByName")
-    public ResponseEntity<?> getTracksByName(@RequestParam("name") String name){
-
-        return new ResponseEntity<List<Track>>(trackService.getTracksByName(name),HttpStatus.OK);
-
-    }
+//    @GetMapping("trackByName")
+//    public ResponseEntity<?> getTracksByName(@RequestParam("name") String name){
+//
+//        return new ResponseEntity<List<Track>>(trackService.getTracksByName(name),HttpStatus.OK);
+//
+//    }
 
     @DeleteMapping("delete")
     public void deleteTrack(@RequestBody Track track){

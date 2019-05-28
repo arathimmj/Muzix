@@ -51,10 +51,10 @@ public class TrackServiceImpl implements TrackService{
         return trackRepository.findById(id);
     }
 
-    @Override
-    public List<Track> getTracksByName(String name) {
-        return trackRepository.findTrackByName(name);
-    }
+//    @Override
+//    public List<Track> getTracksByName(String name) {
+//        return trackRepository.findTrackByName(name);
+//    }
 
     @Override
     public void deleteTrack(Track track){

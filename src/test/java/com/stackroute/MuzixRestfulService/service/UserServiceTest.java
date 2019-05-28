@@ -88,7 +88,7 @@ doThrow(new TrackAlreadyExistsException()).when(trackRepository).findById(eq(101
         Assert.assertEquals(Optional.of(track),tracks);
     }
 
-    @Test
+    /*@Test
     public void getTracksByName(){
         trackRepository.save(track);
         when(trackRepository.findTrackByName(any())).thenReturn(list);
@@ -96,6 +96,6 @@ doThrow(new TrackAlreadyExistsException()).when(trackRepository).findById(eq(101
 
         Assert.assertEquals(list,tracks);
 
-    }
+    }*/
 
 }
