@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 //@DataJpaTest
@@ -64,6 +65,24 @@ public class UserRepositoryTest {
 
         List<Track> list = trackRepository.findAll();
         Assert.assertEquals("Johny12",list.get(0).getTrackName());
+    }
+
+    @Test
+    public void testGetTrackByName(){
+
+        trackRepository.save(track);
+
+        List<Track> list = trackRepository.findTrackByName(track.getTrackName());
+        Assert.assertEquals("John",list.get(0).getTrackName());
+    }
+
+    @Test
+    public void testGetTrackById(){
+
+        trackRepository.save(track);
+
+        Optional<Track> trackWithId = trackRepository.findById(track.getTrackId());
+        Assert.assertEquals(Optional.of(track), trackWithId);
     }
 
 }

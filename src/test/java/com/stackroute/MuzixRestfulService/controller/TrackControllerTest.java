@@ -108,6 +108,27 @@ public class TrackControllerTest {
 
     }
 
+    @Test
+    public void deleteTrack() throws Exception {
+
+//        when(trackService.deleteTrack(any())).thenReturn(null);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/delete")
+        .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    public void updateTrack() throws Exception {
+
+//        when(trackService.deleteTrack(any())).thenReturn(null);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/update")
+                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
 
     private static String asJsonString(final Object obj)
     {
@@ -118,14 +139,5 @@ public class TrackControllerTest {
             throw new RuntimeException(e);
         }
     }
-
-
-
-
-
-
-
-
-
 
 }
